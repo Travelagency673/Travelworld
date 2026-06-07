@@ -1,2 +1,589 @@
 
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Details - Armenia Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2D3436;
+            --light: #F7F9FC;
+            --gradient-primary: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            --gradient-secondary: linear-gradient(135deg, #4ECDC4 0%, #22A6B3 100%);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--gradient-secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover { transform: translateX(-5px); }
+
+        /* Hero Section */
+        .destination-hero {
+            margin-top: 70px;
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 3rem 2rem;
+        }
+
+        .destination-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        .destination-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .description-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .description-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .description-section p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .highlights {
+            margin-top: 2rem;
+        }
+
+        .highlights h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlights li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .highlights li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Sidebar */
+        .booking-sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .booking-sidebar h3 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .price-box {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-box .amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .price-box .per-person {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-item i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            width: 30px;
+        }
+
+        .book-now-btn {
+            width: 100%;
+            background: var(--gradient-secondary);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
+        }
+
+        /* Gallery */
+        .gallery {
+            margin-top: 3rem;
+        }
+
+        .gallery h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .booking-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-plane-departure"></i> Armenia Travel</a>
+            <a href="index.html#destinations" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Destinations
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="destination-hero" id="destinationHero">
+        <div class="hero-content">
+            <h1 id="destName">Loading...</h1>
+            <div class="price" id="destPrice">$0</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="destination-container">
+        <div class="content-grid">
+            <!-- Description -->
+            <div class="description-section">
+                <h2 data-en="About This Destination" data-hy="Այս ուղղության մասին" data-ru="Об этом направлении">About This Destination</h2>
+                <p id="destDescription">Loading description...</p>
+                
+                <div class="highlights">
+                    <h3 data-en="Trip Highlights" data-hy="Ուղևորության առանձնահատկություններ" data-ru="Основные моменты поездки">Trip Highlights</h3>
+                    <ul id="destHighlights">
+                        <!-- Highlights will be inserted here -->
+                    </ul>
+                </div>
+
+                <div class="gallery">
+                    <h2 data-en="Photo Gallery" data-hy="Լուսանկարների պատկերասրահ" data-ru="Фотогалерея">Photo Gallery</h2>
+                    <div class="gallery-grid" id="destGallery">
+                        <!-- Gallery images will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Sidebar -->
+            <div class="booking-sidebar">
+                <h3 data-en="Book This Trip" data-hy="Ամրագրել այս ուղևորությունը" data-ru="Забронировать эту поездку">Book This Trip</h3>
+                
+                <div class="price-box">
+                    <span class="amount" id="sidebarPrice">$0</span>
+                    <span class="per-person" data-en="per person" data-hy="մեկ անձի համար" data-ru="на человека">per person</span>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong data-en="Duration" data-hy="Տևողություն" data-ru="Продолжительность">Duration</strong>
+                        <p id="sidebarDuration">0 Days</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <strong data-en="Rating" data-hy="Վարկանիշ" data-ru="Рейтинг">Rating</strong>
+                        <p id="sidebarRating">0.0</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <strong data-en="Group Size" data-hy="Խմբի չաս" data-ru="Размер группы">Group Size</strong>
+                        <p data-en="Small Group (Max 12)" data-hy="Փոքր խումբ (առավելագույնը 12)" data-ru="Малая группа (макс. 12)">Small Group (Max 12)</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong data-en="Available" data-hy="Հասանելի" data-ru="Доступно">Available</strong>
+                        <p data-en="Year Round" data-hy="Ամբողջ տարի" data-ru="Круглый год">Year Round</p>
+                    </div>
+                </div>
+
+                <button class="book-now-btn" onclick="openBookingFromDetail()" data-en="Book Now" data-hy="Ամրագրել հիմա" data-ru="Забронировать сейчас">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Destination Data
+        const destinations = {
+            paris: {
+                name: "Paris, France",
+                price: "$899",
+                duration: "7 Days",
+                rating: "4.9",
+                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1200",
+                description: "Paris, the City of Light, captivates visitors with its timeless beauty and romantic atmosphere. From the iconic Eiffel Tower to the world-renowned Louvre Museum, every corner of this magnificent city tells a story. Stroll along the Seine River, indulge in exquisite French cuisine at charming bistros, and explore the artistic Montmartre district. Whether you're visiting the Palace of Versailles or simply enjoying a croissant at a sidewalk café, Paris offers an unforgettable experience that combines history, culture, and sophistication in perfect harmony.",
+                highlights: [
+                    "Visit the iconic Eiffel Tower and enjoy panoramic city views",
+                    "Explore the world-famous Louvre Museum and see the Mona Lisa",
+                    "Stroll along the romantic Seine River",
+                    "Discover the artistic charm of Montmartre",
+                    "Experience world-class French cuisine",
+                    "Day trip to the magnificent Palace of Versailles",
+                    "Shopping on the Champs-Élysées",
+                    "Visit the stunning Notre-Dame Cathedral"
+                ],
+                gallery: [
+                    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600",
+                    "https://images.unsplash.com/photo-1511739001486-6bfe10ce7859?w=600",
+                    "https://images.unsplash.com/photo-1499856871940-a09627c6d7db?w=600",
+                    "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=600"
+                ]
+            },
+            bali: {
+                name: "Bali, Indonesia",
+                price: "$1,299",
+                duration: "10 Days",
+                rating: "4.8",
+                image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200",
+                description: "Bali is a tropical paradise that offers the perfect blend of natural beauty, spiritual serenity, and vibrant culture. Wake up to the sound of waves on pristine beaches, explore ancient temples nestled in lush jungles, and witness breathtaking sunsets over rice terraces. From the surfing beaches of Kuta to the cultural heart of Ubud, Bali provides endless opportunities for adventure and relaxation. Experience traditional Balinese dance, indulge in spa treatments, and discover the island's rich Hindu heritage. Whether you're seeking spiritual enlightenment or simply a perfect beach getaway, Bali promises an enchanting escape.",
+                highlights: [
+                    "Visit the sacred Tanah Lot Temple",
+                    "Explore the artistic town of Ubud",
+                    "Surf the world-famous beaches",
+                    "Trek through stunning rice terraces",
+                    "Experience traditional Balinese ceremonies",
+                    "Snorkel in crystal-clear waters",
+                    "Watch the sunset at Uluwatu Temple",
+                    "Relax with traditional Balinese spa treatments"
+                ],
+                gallery: [
+                    "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600",
+                    "https://images.unsplash.com/photo-1559628233-100c798642d4?w=600",
+                    "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600",
+                    "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=600"
+                ]
+            },
+            tokyo: {
+                name: "Tokyo, Japan",
+                price: "$1,599",
+                duration: "8 Days",
+                rating: "5.0",
+                image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1200",
+                description: "Tokyo is a mesmerizing metropolis where ancient traditions seamlessly blend with cutting-edge technology. Experience the neon-lit streets of Shibuya, find peace in centuries-old temples, and savor the world's best sushi at hidden local gems. From the bustling Tsukiji Fish Market to the serene gardens of the Imperial Palace, Tokyo offers a unique journey through time. Explore trendy Harajuku, witness the famous cherry blossoms, and immerse yourself in Japanese pop culture. Whether you're a tech enthusiast, food lover, or history buff, Tokyo's dynamic energy and endless discoveries will leave you spellbound.",
+                highlights: [
+                    "Experience the famous Shibuya Crossing",
+                    "Visit the ancient Senso-ji Temple in Asakusa",
+                    "Explore the futuristic teamLab Borderless",
+                    "Savor authentic sushi at Tsukiji Market",
+                    "Witness the beauty of cherry blossoms",
+                    "Shop in trendy Harajuku district",
+                    "Visit the Imperial Palace and gardens",
+                    "Experience traditional tea ceremony"
+                ],
+                gallery: [
+                    "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600",
+                    "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=600",
+                    "https://images.unsplash.com/photo-1528164344705-47542687000d?w=600",
+                    "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600"
+                ]
+            },
+            santorini: {
+                name: "Santorini, Greece",
+                price: "$1,099",
+                duration: "6 Days",
+                rating: "4.9",
+                image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=1200",
+                description: "Santorini is the epitome of Greek island beauty, famous for its stunning sunsets, white-washed buildings, and crystal-clear waters. Perched on dramatic cliffs overlooking the Aegean Sea, this volcanic island offers breathtaking views at every turn. Wander through the charming villages of Oia and Fira, relax on unique black and red sand beaches, and indulge in fresh Mediterranean cuisine. Explore ancient ruins, visit local wineries, and sail around the caldera at sunset. Santorini's romantic atmosphere and spectacular scenery make it the perfect destination for couples and dreamers alike.",
+                highlights: [
+                    "Watch the world-famous sunset in Oia",
+                    "Explore the white-washed village of Fira",
+                    "Relax on unique black and red sand beaches",
+                    "Visit ancient Akrotiri archaeological site",
+                    "Sail around the volcanic caldera",
+                    "Taste local wines at traditional wineries",
+                    "Swim in crystal-clear Aegean waters",
+                    "Enjoy fresh Mediterranean seafood"
+                ],
+                gallery: [
+                    "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600",
+                    "https://images.unsplash.com/photo-1613395877344-13d4c280d288?w=600",
+                    "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600",
+                    "https://images.unsplash.com/photo-1601581875309-fafbf2d3edf1?w=600"
+                ]
+            },
+            dubai: {
+                name: "Dubai, UAE",
+                price: "$1,799",
+                duration: "5 Days",
+                rating: "4.7",
+                image: "https://images.unsplash.com/photo-1512453979798-5ea904ac6605?w=1200",
+                description: "Dubai is a city where dreams become reality, featuring the world's tallest building, largest shopping mall, and most ambitious architectural projects. Experience luxury like never before as you explore this futuristic metropolis rising from the desert. Skydive over Palm Jumeirah, ski indoors at Ski Dubai, and shop at the magnificent Dubai Mall. Take a desert safari to experience traditional Bedouin culture, cruise along Dubai Marina, and marvel at the stunning Burj Khalifa. From golden souks to ultra-modern attractions, Dubai offers an extraordinary blend of tradition and innovation.",
+                highlights: [
+                    "Visit the record-breaking Burj Khalifa",
+                    "Shop at the world's largest Dubai Mall",
+                    "Experience thrilling desert safari",
+                    "Skydive over Palm Jumeirah",
+                    "Explore traditional Gold and Spice Souks",
+                    "Ski indoors at Ski Dubai",
+                    "Cruise along Dubai Marina",
+                    "Visit the futuristic Museum of the Future"
+                ],
+                gallery: [
+                    "https://images.unsplash.com/photo-1512453979798-5ea904ac6605?w=600",
+                    "https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=600",
+                    "https://images.unsplash.com/photo-1546412414-e1885259563a?w=600",
+                    "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600"
+                ]
+            },
+            rome: {
+                name: "Rome, Italy",
+                price: "$950",
+                duration: "7 Days",
+                rating: "4.8",
+                image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1200",
+                description: "Rome, the Eternal City, is a living museum where ancient history meets vibrant modern life. Walk in the footsteps of emperors at the Colosseum, toss a coin in the Trevi Fountain, and explore the magnificent Vatican City. Every cobblestone street tells a story spanning nearly three millennia. Indulge in authentic Italian cuisine, from handmade pasta to gelato, and sip espresso at charming piazzas. Visit the Roman Forum, admire masterpieces in the Sistine Chapel, and throw a coin in the Trevi Fountain to ensure your return. Rome's timeless beauty and rich heritage create an unforgettable journey through history.",
+                highlights: [
+                    "Explore the ancient Colosseum and Roman Forum",
+                    "Visit Vatican City and the Sistine Chapel",
+                    "Toss a coin in the iconic Trevi Fountain",
+                    "Admire the Pantheon's architectural marvel",
+                    "Climb the Spanish Steps",
+                    "Savor authentic Italian pasta and gelato",
+                    "Visit the beautiful Villa Borghese gardens",
+                    "Explore charming Trastevere neighborhood"
+                ],
+                gallery: [
+                    "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600",
+                    "https://images.unsplash.com/photo-1515542607507-7c848e2f43c7?w=600",
+                    "https://images.unsplash.com/photo-1555993539-1732b0288456?w=600",
+                    "https://images.unsplash.com/photo-1529260827785-c5e060f384ea?w=600"
+                ]
+            }
+        };
+
+        // Get destination ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const destId = urlParams.get('id');
+
+        // Load destination data
+        function loadDestination() {
+            if (destId && destinations[destId]) {
+                const dest = destinations[destId];
+                
+                // Update hero section
+                document.getElementById('destinationHero').style.backgroundImage = `url('${dest.image}')`;
+                document.getElementById('destName').textContent = dest.name;
+                document.getElementById('destPrice').textContent = dest.price;
+                
+                // Update description
+                document.getElementById('destDescription').textContent = dest.description;
+                
+                // Update sidebar
+                document.getElementById('sidebarPrice').textContent = dest.price;
+                document.getElementById('sidebarDuration').textContent = dest.duration;
+                document.getElementById('sidebarRating').textContent = dest.rating;
+                
+                // Update highlights
+                const highlightsList = document.getElementById('destHighlights');
+                highlightsList.innerHTML = dest.highlights.map(hl => `<li>${hl}</li>`).join('');
+                
+                // Update gallery
+                const galleryGrid = document.getElementById('destGallery');
+                galleryGrid.innerHTML = dest.gallery.map(img => 
+                    `<div class="gallery-item" style="background-image: url('${img}')"></div>`
+                ).join('');
+                
+                // Update page title
+                document.title = `${dest.name} - Armenia Travel`;
+            } else {
+                // Redirect to home if invalid destination
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Open booking modal (you'll need to add this to your main index.html modal)
+        function openBookingFromDetail() {
+            const destName = document.getElementById('destName').textContent;
+            // Store in localStorage to pass to index.html
+            localStorage.setItem('bookingDestination', destName);
+            window.location.href = 'index.html#booking';
+        }
+
+        // Initialize
+        window.onload = loadDestination;
+    </script>
+</body>
+</html>  
