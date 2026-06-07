@@ -1,1 +1,18 @@
 
+<!-- Booking Popup Modal -->
+<div id="bookingModal" class="modal-overlay" onclick="closeBooking(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <button class="close-modal" onclick="closeBooking()">&times;</button>
+        <h2 style="color: var(--primary); margin-bottom: 10px;">Book Your Trip</h2>
+        <p style="margin-bottom: 20px; color: #666;">You are booking: <strong id="modalDestName" style="color: var(--dark);"></strong></p>
+        
+        <form onsubmit="handleBookingSubmit(event)">
+            <input type="text" placeholder="Your Full Name" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px;">
+            <input type="email" placeholder="Your Email Address" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px;">
+            <input type="tel" placeholder="Your Phone Number" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px;">
+            <input type="date" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 8px;">
+            
+            <button type="submit" class="book-btn" style="width: 100%; margin-top: 10px;">Confirm Booking Request</button>
+        </form>
+    </div>
+</div>
