@@ -1,1 +1,848 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armenia Travel - Discover the World</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f59e0b;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --text-color: #475569;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.4rem 0.8rem;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            height: 90vh;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(245, 158, 11, 0.6)),
+                        url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--dark-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .search-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: fit-content;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-color);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Destinations Section */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .destination-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .destination-info {
+            padding: 1.5rem;
+        }
+
+        .destination-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .destination-info p {
+            margin-bottom: 1rem;
+        }
+
+        .destination-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .destination-meta i {
+            color: var(--primary-color);
+        }
+
+        .book-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .book-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--light-color);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo"><i class="fas fa-plane-departure"></i> Armenia Travel</a>
+            <ul class="nav-links">
+                <li><a href="#home" data-en="Home" data-hy="Գլխավոր" data-ru="Главная">Home</a></li>
+                <li><a href="#about" data-en="About Us" data-hy="Մեր մասին" data-ru="О нас">About Us</a></li>
+                <li><a href="#destinations" data-en="Destinations" data-hy="Ուղղություններ" data-ru="Направления">Destinations</a></li>
+                <li><a href="#contact" data-en="Contact" data-hy="Կապ" data-ru="Контакты">Contact</a></li>
+                <li>
+                    <div class="language-selector">
+                        <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
+                        <button class="lang-btn" onclick="changeLanguage('hy')">HY</button>
+                        <button class="lang-btn" onclick="changeLanguage('ru')">RU</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-en="Discover the World with Us" data-hy="Հայտնաբերեք աշխարհը մեզ հետ" data-ru="Откройте мир с нами">Discover the World with Us</h1>
+            <p data-en="Your journey begins here" data-hy="Ձեր անապարհորդությունը սկսվում է այստեղ" data-ru="Ваше путешествие начинается здесь">Your journey begins here</p>
+            
+            <!-- Search Box -->
+            <div class="search-box">
+                <form class="search-form" onsubmit="event.preventDefault(); searchDestinations();">
+                    <div class="form-group">
+                        <label data-en="Destination" data-hy="Ուղղություն" data-ru="Направление">Destination</label>
+                        <input type="text" id="searchDestination" placeholder="Where do you want to go?">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Date" data-hy="Ամսաթիվ" data-ru="Дата">Date</label>
+                        <input type="date" id="searchDate">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Travelers" data-hy="Ճանապարհորդներ" data-ru="Путешественники">Travelers</label>
+                        <select id="searchTravelers">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4+ People</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="search-btn" data-en="Search" data-hy="Որոնել" data-ru="Поиск">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title" data-en="About Us" data-hy="Մեր մասին" data-ru="О нас">About Us</h2>
+        <p class="section-subtitle" data-en="Your trusted travel partner" data-hy="Ձեր վստահելի ճանապարհորդական գործընկերը" data-ru="Ваш надежный партнер в путешествиях">Your trusted travel partner</p>
+        
+        <div class="about-content">
+            <p data-en="We believe that travel is more than just visiting new places—it's about creating unforgettable experiences and lifelong memories." 
+               data-hy="Մենք հավատում ենք, որ ճանապարհորդությունը պարզապես նոր վայրեր այցելելը չէ—դա անմոռանալի փորձառություններ և ամբողջ կյանքի հիշողություններ ստեղծելն է:"
+               data-ru="Мы верим, что путешествие — это больше, чем просто посещение новых мест — это создание незабываемых впечатлений и воспоминаний на всю жизнь.">
+               We believe that travel is more than just visiting new places—it's about creating unforgettable experiences and lifelong memories.</p>
+
+            <p data-en="Our mission is to make travel easy, enjoyable, and accessible for everyone. Whether you're dreaming of a relaxing beach getaway, an exciting family vacation, a romantic honeymoon, or an adventure across the globe, our experienced team is dedicated to helping you plan every detail with care."
+               data-hy="Մեր առաքելությունն է ճանապարհորդությունը հեշտ, հաճելի և հասանելի դարձնել բոլորի համար: Անկախ նրանից՝ դուք երազում եք հանգստացնող լողափի արձակուրդի, հուզիչ ընտանեկան արձակուրդի, ռոմանտիկ մեղրամսի, թե արկածախնդրության ամբողջ աշխարհով, մեր փորձառու թիմը նվիրված է ձեզ օգնելու պլանավորել յուրաքանչյուր մանրուք հոգատարությամբ:"
+               data-ru="Наша миссия — сделать путешествия легкими, приятными и доступными для всех. Независимо от того, мечтаете ли вы о расслабляющем пляжном отдыхе, захватывающем семейном отпуске, романтическом медовом месяце или приключениях по всему миру, наша опытная команда посвящает себя тому, чтобы помочь вам спланировать каждую деталь с заботой.">
+               Our mission is to make travel easy, enjoyable, and accessible for everyone. Whether you're dreaming of a relaxing beach getaway, an exciting family vacation, a romantic honeymoon, or an adventure across the globe, our experienced team is dedicated to helping you plan every detail with care.</p>
+
+            <p data-en="We work with trusted travel partners worldwide to offer exceptional destinations, competitive prices, and personalized service. From flights and hotels to guided tours and custom itineraries, we handle the planning so you can focus on enjoying the journey."
+               data-hy="Մենք աշխատում ենք վստահելի ճանապարհորդական գործընկերների հետ ամբողջ աշխարհում՝ առաջարկելու բացառիկ ուղղություններ, մրցունակ գներ և անհատականացված սպասարկում: Թռիչքներից և հյուրանոցներից մինչև էքսկուրսիաներ և հատուկ ծրագրեր, մենք զբաղվում ենք պլանավորմամբ, որպեսզի դուք կարողանաք կենտրոնանալ ճանապարհորդությունը վայելելու վրա:"
+               data-ru="Мы работаем с надежными туристическими партнерами по всему миру, чтобы предложить исключительные направления, конкурентоспособные цены и персонализированный сервис. От авиабилетов и отелей до экскурсий и индивидуальных маршрутов — мы занимаемся планированием, чтобы вы могли сосредоточиться на наслаждении путешествием.">
+               We work with trusted travel partners worldwide to offer exceptional destinations, competitive prices, and personalized service. From flights and hotels to guided tours and custom itineraries, we handle the planning so you can focus on enjoying the journey.</p>
+
+            <p data-en="With a passion for exploration and a commitment to customer satisfaction, we strive to turn your travel dreams into reality."
+               data-hy="Հետազոտության կրքով և հաճախորդների բավարարվածության հանձնառությամբ, մենք ձգտում ենք իրականություն դարձնել ձեր ճանապարհորդական երազանքները:"
+               data-ru="С страстью к исследованиям и приверженностью удовлетворенности клиентов мы стремимся превратить ваши мечты о путешествиях в реальность.">
+               With a passion for exploration and a commitment to customer satisfaction, we strive to turn your travel dreams into reality.</p>
+
+            <p data-en="Let us help you discover the world—one unforgettable trip at a time."
+               data-hy="Թույլ տվեք մեզ օգնել ձեզ հայտնաբերել աշխարհը—մեկ անմոռանալի ճանապարհորդություն մեկ անգամ:"
+               data-ru="Позвольте нам помочь вам открыть мир — одно незабываемое путешествие за раз.">
+               Let us help you discover the world—one unforgettable trip at a time.</p>
+        </div>
+
+        <div class="about-stats">
+            <div class="stat-card">
+                <i class="fas fa-globe-americas"></i>
+                <h3>50+</h3>
+                <p data-en="Countries" data-hy="Երկրներ" data-ru="Стран">Countries</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3>10k+</h3>
+                <p data-en="Happy Travelers" data-hy="Երջանիկ ճանապարհորդներ" data-ru="Довольных путешественников">Happy Travelers</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-award"></i>
+                <h3>15+</h3>
+                <p data-en="Years Experience" data-hy="Տարիների փորձ" data-ru="Лет опыта">Years Experience</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-headset"></i>
+                <h3>24/7</h3>
+                <p data-en="Support" data-hy="Աջակցություն" data-ru="Поддержка">Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations">
+        <h2 class="section-title" data-en="Popular Destinations" data-hy="Հանրաճանաչ ուղղություններ" data-ru="Популярные направления">Popular Destinations</h2>
+        <p class="section-subtitle" data-en="Explore our top-rated travel packages" data-hy="Հայտնաբերեք մեր լավագույն ճանապարհորդական փաթեթները" data-ru="Исследуйте наши лучшие туристические пакеты">Explore our top-rated travel packages</p>
+
+        <div class="destinations-grid">
+            <!-- Destination 1 -->
+            <div class="destination-card">
+                <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1499856871940-a09627c6dcf6?w=800')">
+                    <span class="price-tag">$899</span>
+                </div>
+                <div class="destination-info">
+                    <h3 data-en="Paris, France" data-hy="Փարիզ, Ֆրանսիա" data-ru="Париж, Франция">Paris, France</h3>
+                    <p data-en="Experience the city of love with iconic landmarks and world-class cuisine." data-hy="Վայելեք սիրո քաղաքը՝ պատկերազարդ հուշարձաններով և համաշխարհային խոհանոցով:" data-ru="Испытайте город любви с культовыми достопримечательностями и кухней мирового класса.">Experience the city of love with iconic landmarks and world-class cuisine.</p>
+                    <div class="destination-meta">
+                        <span><i class="fas fa-clock"></i> 7 Days</span>
+                        <span><i class="fas fa-user"></i> 2 People</span>
+                    </div>
+                    <button class="book-btn" data-en="Book Now" data-hy="Ամրագրել" data-ru="Забронировать">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Destination 2 -->
+            <div class="destination-card">
+                <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800')">
+                    <span class="price-tag">$1,299</span>
+                </div>
+                <div class="destination-info">
+                    <h3 data-en="Bali, Indonesia" data-hy="Բալի, Ինդոնեզիա" data-ru="Бали, Индонезия">Bali, Indonesia</h3>
+                    <p data-en="Tropical paradise with beautiful beaches, temples, and vibrant culture." data-hy="Արևադարձային դրախտ՝ գեղեցիկ լողափերով, տաճարներով և կենսունակ մշակույթով:" data-ru="Тропический рай с красивыми пляжами, храмами и яркой культурой.">Tropical paradise with beautiful beaches, temples, and vibrant culture.</p>
+                    <div class="destination-meta">
+                        <span><i class="fas fa-clock"></i> 10 Days</span>
+                        <span><i class="fas fa-user"></i> 2 People</span>
+                    </div>
+                    <button class="book-btn" data-en="Book Now" data-hy="Ամրագրել" data-ru="Забронировать">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Destination 3 -->
+            <div class="destination-card">
+                <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800')">
+                    <span class="price-tag">$1,599</span>
+                </div>
+                <div class="destination-info">
+                    <h3 data-en="Tokyo, Japan" data-hy="Տոկիո, Ճապոնիա" data-ru="Токио, Япония">Tokyo, Japan</h3>
+                    <p data-en="Discover ancient traditions meets modern innovation in this fascinating city." data-hy="Հայտնաբերեք հնագույն ավանդույթները, որոնք հանդիպում են ժամանակակից նորարարությանը:" data-ru="Откройте для себя древние традиции, встречающиеся с современными инновациями.">Discover ancient traditions meets modern innovation in this fascinating city.</p>
+                    <div class="destination-meta">
+                        <span><i class="fas fa-clock"></i> 8 Days</span>
+                        <span><i class="fas fa-user"></i> 2 People</span>
+                    </div>
+                    <button class="book-btn" data-en="Book Now" data-hy="Ամրագրել" data-ru="Забронировать">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Destination 4 -->
+            <div class="destination-card">
+                <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800')">
+                    <span class="price-tag">$1,099</span>
+                </div>
+                <div class="destination-info">
+                    <h3 data-en="Santorini, Greece" data-hy="Սանտորինի, Հունաստան" data-ru="Санторини, Греция">Santorini, Greece</h3>
+                    <p data-en="Stunning sunsets, white-washed buildings, and crystal-clear waters." data-hy="Հիասքանչ մայրամուտներ, սպիտակ շենքեր և բյուրեղապակյա ջրեր:" data-ru="Потрясающие закаты, белоснежные здания и кристально чистая вода.">Stunning sunsets, white-washed buildings, and crystal-clear waters.</p>
+                    <div class="destination-meta">
+                        <span><i class="fas fa-clock"></i> 6 Days</span>
+                        <span><i class="fas fa-user"></i> 2 People</span>
+                    </div>
+                    <button class="book-btn" data-en="Book Now" data-hy="Ամրագրել" data-ru="Забронировать">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Destination 5 -->
+            <div class="destination-card">
+                <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea904ac6605?w=800')">
+                    <span class="price-tag">$1,799</span>
+                </div>
+                <div class="destination-info">
+                    <h3 data-en="Dubai, UAE" data-hy="Դուբայ, ԱՄԷ" data-ru="Дубай, ОАЭ">Dubai, UAE</h3>
+                    <p data-en="Luxury shopping, ultramodern architecture, and vibrant nightlife." data-hy="Շքեղ գնումներ, ուլտրամոդեռն ճարտարապետություն և կենսունակ գիշերային կյանք:" data-ru="Роскошный шоппинг, ультрасовременная архитектура и яркая ночная жизнь.">Luxury shopping, ultramodern architecture, and vibrant nightlife.</p>
+                    <div class="destination-meta">
+                        <span><i class="fas fa-clock"></i> 5 Days</span>
+                        <span><i class="fas fa-user"></i> 2 People</span>
+                    </div>
+                    <button class="book-btn" data-en="Book Now" data-hy="Ամրագրել" data-ru="Забронировать">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Destination 6 -->
+            <div class="destination-card">
+                <div class="destination-image" style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=800')">
+                    <span class="price-tag">$1,399</span>
+                </div>
+                <div class="destination-info">
+                    <h3 data-en="Kyoto, Japan" data-hy="Կիոտո, Ճապոնիա" data-ru="Киото, Япония">Kyoto, Japan</h3>
+                    <p data-en="Ancient temples, traditional tea houses, and beautiful gardens." data-hy="Հնագույն տաճարներ, ավանդական թեյի տներ և գեղեցիկ այգիներ:" data-ru="Древние храмы, традиционные чайные домики и красивые сады.">Ancient temples, traditional tea houses, and beautiful gardens.</p>
+                    <div class="destination-meta">
+                        <span><i class="fas fa-clock"></i> 7 Days</span>
+                        <span><i class="fas fa-user"></i> 2 People</span>
+                    </div>
+                    <button class="book-btn" data-en="Book Now" data-hy="Ամրագրել" data-ru="Забронировать">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title" data-en="Contact Us" data-hy="Կապ մեզ հետ" data-ru="Свяжитесь с нами">Contact Us</h2>
+        <p class="section-subtitle" data-en="We're here to help plan your perfect trip" data-hy="Մենք այստեղ ենք օգնելու պլանավորել ձեր կատարյալ ճանապարհորդությունը" data-ru="Мы здесь, чтобы помочь спланировать ваше идеальное путешествие">We're here to help plan your perfect trip</p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 data-en="Get in Touch" data-hy="Կապ հաստատեք" data-ru="Свяжитесь с нами">Get in Touch</h3>
+                <p data-en="Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible." 
+                   data-hy="Հարցեր ունե՞ք: Մենք սիրով կլսենք ձեզ: Ուղարկեք մեզ հաղորդագրություն և մենք կպատասխանենք որքան հնարավոր է շուտ:"
+                   data-ru="Есть вопросы? Мы будем рады услышать от вас. Отправьте нам сообщение, и мы ответим как можно скорее.">
+                   Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong data-en="Address" data-hy="Հասցե" data-ru="Адрес">Address</strong>
+                            <p>123 Travel Street, Yerevan, Armenia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong data-en="Phone" data-hy="Հեռախոս" data-ru="Телефон">Phone</strong>
+                            <p>+374 10 123456</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong data-en="Email" data-hy="Էլ. հասցե" data-ru="Email">Email</strong>
+                            <p>info@armeniatravel.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong data-en="Working Hours" data-hy="Աշխատանքային ժամեր" data-ru="Рабочее время">Working Hours</strong>
+                            <p data-en="Mon - Fri: 9:00 AM - 6:00 PM" data-hy="Երկ - Ուրբ: 9:00 - 18:00" data-ru="Пн - Пт: 9:00 - 18:00">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" onsubmit="event.preventDefault(); submitForm();">
+                <div class="form-row">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number">
+                <select style="width: 100%; padding: 0.8rem; border: 2px solid #e2e8f0; border-radius: 8px; margin-bottom: 1rem;">
+                    <option value="" data-en="Select Destination" data-hy="Ընտրեք ուղղություն" data-ru="Выберите направление">Select Destination</option>
+                    <option value="paris">Paris, France</option>
+                    <option value="bali">Bali, Indonesia</option>
+                    <option value="tokyo">Tokyo, Japan</option>
+                    <option value="santorini">Santorini, Greece</option>
+                    <option value="dubai">Dubai, UAE</option>
+                    <option value="kyoto">Kyoto, Japan</option>
+                </select>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit" class="submit-btn" data-en="Send Message" data-hy="Ուղարկել հաղորդագրություն" data-ru="Отправить сообщение">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>&copy; 2024 Armenia Travel. <span data-en="All rights reserved." data-hy="Բոլոր իրավունքները պաշտպանված են:" data-ru="Все права защищены.">All rights reserved.</span></p>
+    </footer>
+
+    <script>
+        // Language Switcher
+        function changeLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en]').forEach(element => {
+                if (element.hasAttribute(`data-${lang}`)) {
+                    element.textContent = element.getAttribute(`data-${lang}`);
+                }
+            });
+
+            // Update placeholders
+            if (lang === 'hy') {
+                document.getElementById('searchDestination').placeholder = 'Ո՞ւր եք ցանկանում գնալ';
+            } else if (lang === 'ru') {
+                document.getElementById('searchDestination').placeholder = 'Куда вы хотите поехать?';
+            } else {
+                document.getElementById('searchDestination').placeholder = 'Where do you want to go?';
+            }
+        }
+
+        // Search Function
+        function searchDestinations() {
+            const destination = document.getElementById('searchDestination').value;
+            const date = document.getElementById('searchDate').value;
+            const travelers = document.getElementById('searchTravelers').value;
+
+            if (destination) {
+                alert(`Searching for trips to ${destination}\nDate: ${date}\nTravelers: ${travelers}`);
+                // Scroll to destinations section
+                document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Please enter a destination');
+            }
+        }
+
+        // Form Submission
+        function submitForm() {
+            alert('Thank you for your message! We will contact you soon.');
+            document.querySelector('.contact-form').reset();
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
