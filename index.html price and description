@@ -1,1 +1,169 @@
 
+        /* Destinations Grid */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .destination-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(255, 107, 107, 0.15);
+        }
+
+        .destination-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .destination-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        /* Price Tag Styling */
+        .price-tag {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: white;
+            color: var(--primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .price-tag small {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #636e72;
+            margin-top: 4px;
+        }
+
+        /* Badges (Best Seller / New) */
+        .badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.popular { background: var(--gradient-primary); box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4); }
+        .badge.new { background: var(--gradient-secondary); box-shadow: 0 4px 10px rgba(78, 205, 196, 0.4); }
+
+        .destination-info {
+            padding: 1.8rem;
+        }
+
+        .destination-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+        }
+
+        .destination-desc {
+            color: #636e72;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* What's Included List */
+        .included-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .included-list span {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .included-list span i {
+            color: #00b894; /* Vibrant Green for checkmarks */
+            font-size: 1.1rem;
+        }
+
+        /* Meta Info (Days, People, Rating) */
+        .destination-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .destination-meta i {
+            margin-right: 0.4rem;
+        }
+
+        .destination-meta .fa-star {
+            color: var(--accent) !important;
+        }
+
+        /* Book Button */
+        .book-btn {
+            width: 100%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
